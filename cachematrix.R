@@ -1,15 +1,35 @@
-## Put comments here that give an overall description of what your
-## functions do
+## Caching the Inverse of a Matrix
+## Usage : value<-matrix(...), then cacheSolve(value)
+## ex) imatrix<-matrix(c(1:4), nrow = 2, ncol = 2);
+##     cacheSolve(imatrix);
+## functions : makeCacheMatrix, cacheSolve
+## created by edydkim, Jan/21/2015
 
-## Write a short comment describing this function
-
+## make a inverse matrix cached
 makeCacheMatrix <- function(x = matrix()) {
-
+    solved <- NULL
+    
+    set <- function(x_) {
+        x <<- x_
+        solved <<- NULL
+    }
+    get <- function() x
+    setSolve <- function(solved_) solved <<- solved_
+    getSolve <- function() solved
+    list(set = set, get = get,
+         setSolve = setSolve,
+         getSolve = getSolve)
 }
 
-
-## Write a short comment describing this function
-
+## get a inverse matrix using caching
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+    solved <- x$getSolve()
+    if(!is.null(solved)) {
+        message("getting cached matrix inversed")
+        return(solved)
+    }
+    data <- x$get()
+    solved <- solve(data, ...)
+    x$setSolve(solved)
+    solved
 }
