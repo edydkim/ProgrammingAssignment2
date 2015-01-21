@@ -1,7 +1,7 @@
 ## Caching the Inverse of a Matrix
 ## Usage : value<-matrix(...), then cacheSolve(value)
 ## ex) tmatrix<-matrix(c(1:4), nrow = 2, ncol = 2);
-##     imatrix<-makeCacheMatrix(tmatrix)
+##     imatrix<-makeCacheMatrix(tmatrix);
 ##     cacheSolve(imatrix);
 ## functions : makeCacheMatrix, cacheSolve
 ## created by edydkim, Jan/21/2015
